@@ -1,20 +1,20 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from "expo-status-bar";
+import { StyleSheet, Text, View } from "react-native";
+import { TailwindProvider } from "tailwindcss-react-native";
+import StackNavigator from "./components/Navigation/StackNavigator";
+import { NavigationContainer } from "@react-navigation/native";
+import DataProvider from "./store/index";
+import axios from "axios";
 
+axios.defaults.baseURL = "http://192.168.29.123:4000/api";
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <TailwindProvider>
+      <DataProvider>
+        <NavigationContainer>
+          <StackNavigator />
+        </NavigationContainer>
+      </DataProvider>
+    </TailwindProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
