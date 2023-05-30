@@ -9,7 +9,7 @@ import Kid from "../Avatars/Kid";
 import Female from "../Avatars/Female";
 import AddProduct from "../Products/AddProduct";
 import Icon from "react-native-vector-icons/MaterialIcons";
-import AllProducts from "../Products/AllProducts";
+import Analytics from "../Products/Analytics";
 
 const Tab = createBottomTabNavigator();
 
@@ -58,17 +58,17 @@ const BottomTabs = () => {
         name="Kids"
         component={Kids}
         options={{
-          tabBarIcon: ({ focused }) => (
-            <Kid color={focused ? "#008080" : "grey"} />
-          ),
+          tabBarIcon: () => <Kid />,
         }}
       />
       <Tab.Screen
-        name="All"
-        component={AllProducts}
+        name="Analytics"
+        component={Analytics}
         options={{
-          tabBarIcon: ({ color }) => (
-            <Icon name="inventory" color={color} size={30} />
+          tabBarIcon: () => (
+            <View className="p-1 rounded-full bg-[teal]">
+              <Icon name="analytics" color={"white"} size={30} />
+            </View>
           ),
         }}
       />

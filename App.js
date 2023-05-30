@@ -6,7 +6,6 @@ import { NavigationContainer } from "@react-navigation/native";
 import DataProvider from "./store/index";
 import axios from "axios";
 
-axios.defaults.baseURL = "http://192.168.29.123:4000/api";
 export default function App() {
   return (
     <TailwindProvider>

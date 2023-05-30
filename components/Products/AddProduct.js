@@ -64,14 +64,13 @@ const AddProduct = () => {
           "Access-Control-Allow-Origin": `${path}`,
         },
       };
-      const res = await axios.post("/add", product, config);
-      dispatch({ type: NEWPRODUCT_LOADING, payload: false });
+      const res = await axios.post(`${path}/add`, product, config);
       setProduct(init);
       setModal(false);
     } catch (error) {
-      dispatch({ type: NEWPRODUCT_LOADING, payload: false });
       Alert.alert(error);
     }
+    dispatch({ type: NEWPRODUCT_LOADING, payload: false });
   };
 
   return (
@@ -225,7 +224,7 @@ const AddProduct = () => {
               <View className="w-[100%] flex flex-row justify-between items-center">
                 {sizeTo > sizeFrom &&
                   new Array(sizeTo - sizeFrom + 1).fill(0).map((val, idx) => {
-                    let label = +sizeFrom + idx;
+                    let label = sizeFrom + idx;
                     return (
                       <View className="flex gap-y-1 items-center" key={idx}>
                         <Text className="text-sm">{label}</Text>
@@ -237,7 +236,7 @@ const AddProduct = () => {
                                 ...prev,
                                 sizes: {
                                   ...prev.sizes,
-                                  [label]: parseInt(text),
+                                  [label]: text,
                                 },
                               };
                             })

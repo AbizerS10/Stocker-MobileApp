@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { PRODUCTS_LOADING } from "../../store/types/CommonTypes";
+import { path } from "../../path";
 
 const useProductsByCategory = (category) => {
   const { newProductLoading } = useSelector((state) => state.CommonReducer);
@@ -12,7 +13,7 @@ const useProductsByCategory = (category) => {
   const fetchProducts = async () => {
     dispatch({ type: PRODUCTS_LOADING, payload: true });
     try {
-      const response = await axios.get(`/category/${category}`);
+      const response = await axios.get(`${path}/category/${category}`);
       setProducts(response.data.products);
     } catch (error) {
       setError(error);
@@ -26,7 +27,7 @@ const useProductsByCategory = (category) => {
     }
   }, [newProductLoading]);
 
-  return { products, error };
+  return { products, error, setProducts };
 };
 
 export default useProductsByCategory;

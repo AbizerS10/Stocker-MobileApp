@@ -5,7 +5,7 @@ const AllProducts = () => {
   return (
     <View style={{ flex: 1 }} className="px-2">
       <View className="w-[100%] flex flex-row justify-between items-center">
-        <Text className="text-xl font-bold">AllProducts</Text>
+        <Text className="text-xl font-bold">Coming soon</Text>
       </View>
     </View>
   );

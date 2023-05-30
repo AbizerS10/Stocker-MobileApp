@@ -51,9 +51,32 @@ module.exports.addAProduct = async (req, res) => {
 
 module.exports.getProductsByCategory = async (req, res) => {
   try {
-    const { category } = req.params;
+    const category = req.params.category;
     const products = await Products.find({ category });
     return res.status(200).json({ products });
+  } catch (error) {
+    return res.status(500).json({ msg: error });
+  }
+};
+
+module.exports.editAProduct = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const newProd = req.body.newProd;
+    const product = await Products.findByIdAndUpdate(id, newProd, {
+      new: true,
+    });
+    return res.status(200).json({ product });
+  } catch (error) {
+    return res.status(500).json({ msg: error });
+  }
+};
+
+module.exports.deleteAProduct = async (req, res) => {
+  try {
+    const id = req.params.id;
+    await Products.findByIdAndDelete(id);
+    return res.status(200).json({ msg: "product deleted" });
   } catch (error) {
     return res.status(500).json({ msg: error });
   }
